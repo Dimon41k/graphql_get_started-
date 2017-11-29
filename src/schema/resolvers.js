@@ -1,8 +1,8 @@
-const persons = [
+let persons = [
   {
     id: 1,
     name: 'Sasha',
-    description: 25
+    age: 25
   },
   {
     id: 2,
@@ -11,7 +11,7 @@ const persons = [
   },
 ];
 
-const posts = [
+let posts = [
   {
     id: 1,
     name: 'Sasha',
@@ -33,6 +33,28 @@ module.exports = {
         const newPerson = Object.assign({id: persons.length + 1}, data);
         persons.push(newPerson);
         return newPerson;
+      },
+      deletePerson: (_, data) => {
+	person = persons.find(function(x){
+		return x.id === data.id
+	});
+	persons = persons.filter(function(x){
+        return x.id !== data.id;
+	});
+	return person;
+      },
+      updatePerson: (_, data) => {
+
+	person = persons.find(function(x){
+		return x.id == data.id
+	});
+console.log(person, data);
+	persons = persons.map(function(x){
+	if(x.id  == data.id)
+        return data;
+	else return x;
+	});
+	return person;
       }
     },
 };

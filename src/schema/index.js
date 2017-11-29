@@ -9,6 +9,8 @@ type Query {
 
 type Mutation {
   createPerson(name: String!, age: Int!): Person!
+  deletePerson(id:ID!):Person!
+  updatePerson(id:ID!, name:String!, age: Int!):Person!
 }
 
 type Subscription {
@@ -25,6 +27,7 @@ type Post {
   title: String!
   author: Person!
 }
+
 `;
 
 // Generate the schema object from your types definition.
